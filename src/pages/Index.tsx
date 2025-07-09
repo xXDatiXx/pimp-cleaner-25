@@ -43,12 +43,12 @@ const Index = () => {
   // Configuration states
   const [totalRacks, setTotalRacks] = useState(50); // Default 50 racks (10x5 grid)
   const [serviceTypes, setServiceTypes] = useState([
-    { id: "clean_gent", name: "Clean Gent - Piel", price: 50 },
-    { id: "basic", name: "Basic - Sneakers", price: 100 },
-    { id: "premium", name: "Premium - Sneakers", price: 150 },
-    { id: "vip", name: "VIP - Sneakers", price: 180 },
-    { id: "ultra_white", name: "Ultra White - Sneakers", price: 160 },
-    { id: "suede", name: "Suede - Sneakers", price: 150 },
+    { id: "basic_repair", name: "Basic Shoe Repair", price: 35 },
+    { id: "sole_replacement", name: "Sole Replacement", price: 85 },
+    { id: "heel_repair", name: "Heel Repair", price: 45 },
+    { id: "leather_restoration", name: "Leather Restoration", price: 75 },
+    { id: "boot_resoling", name: "Boot Resoling", price: 120 },
+    { id: "vintage_restoration", name: "Vintage Restoration", price: 95 },
   ]);
 
   // New service form state
@@ -483,18 +483,18 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+    <div className="min-h-screen bg-background dark vintage-pattern">
       <div className="container mx-auto p-6">
         <div className="mb-8 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <img 
-              src="/lovable-uploads/4f6ba3ed-3cc8-482d-862f-73c1fb27fe9c.png" 
-              alt="RMP Logo" 
-              className="h-24 w-auto"
+              src="/lovable-uploads/963e805e-2488-4996-b59d-10f9b951544c.png" 
+              alt="Ginger Bull Repair Room Logo" 
+              className="h-32 w-auto vintage-pattern rounded-lg p-2 bg-card/50"
             />
             <div>
-              <h1 className="text-4xl font-bold text-white mb-2">PIMP Management</h1>
-              <p className="text-gray-300">Premium streetwear shoe cleaning service</p>
+              <h1 className="text-5xl font-bold text-primary mb-2 font-playfair">Ginger Bull Repair Room</h1>
+              <p className="text-accent text-xl font-merriweather">Premium Shoe Repair & Restoration Services</p>
             </div>
           </div>
           
@@ -840,18 +840,18 @@ const Index = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2 max-h-48 overflow-y-auto">
-                    {Array.from(getOccupiedRacks()).map(rack => {
-                      const shoe = orders.flatMap(o => o.shoes || []).find(s => s.rack === rack);
-                      const order = orders.find(o => o.shoes?.some(s => s.rack === rack));
-                      return (
-                        <div key={rack} className="flex items-center justify-between p-2 bg-gray-700 rounded cursor-pointer hover:bg-gray-600" onClick={() => handleRackClick(rack)}>
-                          <Badge variant="outline" className="border-red-500 text-red-500">
-                            {rack}
-                          </Badge>
-                          <div className="text-xs text-gray-300">
-                            <div>{shoe?.brand} - {order?.clientName}</div>
-                            <div className="text-orange-400">{serviceTypes.find(s => s.id === shoe?.service)?.name}</div>
-                          </div>
+                     {Array.from(getOccupiedRacks()).map((rack: string) => {
+                       const shoe = orders.flatMap(o => o.shoes || []).find(s => s.rack === rack);
+                       const order = orders.find(o => o.shoes?.some(s => s.rack === rack));
+                       return (
+                         <div key={rack} className="flex items-center justify-between p-2 bg-secondary rounded cursor-pointer hover:bg-accent" onClick={() => handleRackClick(rack)}>
+                           <Badge variant="outline" className="border-destructive text-destructive">
+                             {rack}
+                           </Badge>
+                           <div className="text-xs text-muted-foreground">
+                             <div>{shoe?.brand} - {order?.clientName}</div>
+                             <div className="text-accent">{serviceTypes.find(s => s.id === shoe?.service)?.name}</div>
+                           </div>
                         </div>
                       );
                     })}
