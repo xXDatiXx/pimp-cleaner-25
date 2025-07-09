@@ -657,67 +657,67 @@ const Index = () => {
                             {statusOrders.map((order, index) => (
                               <Draggable key={order.id} draggableId={order.id.toString()} index={index}>
                                 {(provided, snapshot) => (
-                                  <div
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    className={`mb-3 p-4 bg-gray-800 border border-gray-600 rounded-lg shadow-lg transition-all ${
-                                      snapshot.isDragging ? 'rotate-3 shadow-2xl' : 'hover:bg-gray-700'
-                                    }`}
-                                  >
+                                   <div
+                                     ref={provided.innerRef}
+                                     {...provided.draggableProps}
+                                     className={`mb-3 p-4 bg-vintage-brown/20 border border-vintage-gold/30 rounded-lg shadow-vintage transition-all ${
+                                       snapshot.isDragging ? 'rotate-3 shadow-2xl' : 'hover:bg-vintage-brown/30'
+                                     }`}
+                                   >
                                     <div className="flex items-start gap-3">
                                       <div {...provided.dragHandleProps} className="mt-1">
                                         <GripVertical className="h-4 w-4 text-gray-400" />
                                       </div>
                                       <div className="flex-1 space-y-2">
                                         <div className="flex items-center justify-between">
-                                          <p className="font-medium text-white">{order.clientName}</p>
+                                           <p className="font-medium text-vintage-gold">{order.clientName}</p>
                                           <DropdownMenu>
                                             <DropdownMenuTrigger asChild>
                                               <Button variant="ghost" size="sm" className="text-gray-400 hover:text-white">
                                                 <MoreVertical className="h-4 w-4" />
                                               </Button>
                                             </DropdownMenuTrigger>
-                                            <DropdownMenuContent className="bg-gray-800 border-gray-600">
-                                              {Object.entries(statusConfig).map(([statusKey, statusInfo]) => (
-                                                <DropdownMenuItem
-                                                  key={statusKey}
-                                                  onClick={() => handleStatusChange(order.id, statusKey)}
-                                                  className="text-white hover:bg-gray-700"
-                                                >
-                                                  {statusInfo.label}
-                                                </DropdownMenuItem>
-                                              ))}
-                                            </DropdownMenuContent>
+                                             <DropdownMenuContent className="bg-vintage-brown border-vintage-gold/30">
+                                               {Object.entries(statusConfig).map(([statusKey, statusInfo]) => (
+                                                 <DropdownMenuItem
+                                                   key={statusKey}
+                                                   onClick={() => handleStatusChange(order.id, statusKey)}
+                                                   className="text-vintage-tan hover:bg-vintage-brown/50"
+                                                 >
+                                                   {statusInfo.label}
+                                                 </DropdownMenuItem>
+                                               ))}
+                                             </DropdownMenuContent>
                                           </DropdownMenu>
                                         </div>
                                         
-                                        <div className="text-xs text-gray-300 space-y-1">
+                                        <div className="text-xs text-vintage-tan space-y-1">
                                           <div className="flex justify-between">
                                             <span>Recibido: {order.receivedDate}</span>
                                             <span>Entrega: {order.deliveryDate}</span>
                                           </div>
                                         </div>
                                         
-                                        <div className="w-full bg-gray-700 rounded-full h-2">
-                                          <div 
-                                            className="bg-orange-500 h-2 rounded-full transition-all duration-300" 
-                                            style={{ width: `${calculateProgress(order)}%` }}
-                                          ></div>
-                                        </div>
+                                         <div className="w-full bg-vintage-brown/50 rounded-full h-2">
+                                           <div 
+                                             className="bg-vintage-gold h-2 rounded-full transition-all duration-300" 
+                                             style={{ width: `${calculateProgress(order)}%` }}
+                                           ></div>
+                                         </div>
                                         
                                         <div className="space-y-1">
-                                          {order.shoes.map((shoe, shoeIndex) => (
-                                            <div key={shoeIndex} className="text-xs bg-gray-700 p-2 rounded">
-                                              <div className="flex justify-between items-start">
-                                                <div>
-                                                  <div className="font-medium text-white">{shoe.brand}</div>
-                                                  <div className="text-gray-400">{shoe.details}</div>
-                                                  <div className="text-orange-400">
-                                                    {serviceTypes.find(s => s.id === shoe.service)?.name}
-                                                  </div>
-                                                </div>
-                                                <div className="text-right">
-                                                  <div className="text-pink-400 font-medium">Rack: {shoe.rack}</div>
+                                           {order.shoes.map((shoe, shoeIndex) => (
+                                             <div key={shoeIndex} className="text-xs bg-vintage-brown/40 p-2 rounded border border-vintage-gold/20">
+                                               <div className="flex justify-between items-start">
+                                                 <div>
+                                                   <div className="font-medium text-vintage-gold">{shoe.brand}</div>
+                                                   <div className="text-vintage-tan">{shoe.details}</div>
+                                                   <div className="text-vintage-rust">
+                                                     {serviceTypes.find(s => s.id === shoe.service)?.name}
+                                                   </div>
+                                                 </div>
+                                                 <div className="text-right">
+                                                   <div className="text-vintage-gold font-medium">Rack: {shoe.rack}</div>
                                                   <div className="text-green-400">${serviceTypes.find(s => s.id === shoe.service)?.price}</div>
                                                 </div>
                                               </div>
